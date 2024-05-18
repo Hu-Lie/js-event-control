@@ -1,0 +1,31 @@
+{
+  "scripts": {
+    "build": "rollup -c rollup.config.js",
+    "dev": "rollup -wc"
+  },
+  "name": "@hu-lie/js-event-control",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index-cjs.js",
+  "module": "dist/index-esm.js",
+  "browser": "dist/index.js",
+  "author": "HuLie",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Hu-Lie/EventControl.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Hu-Lie/EventControl/issues"
+  },
+  "homepage": "https://github.com/Hu-Lie/EventControl#readme",
+  "description": "JavaScript Event Control",
+  "dependencies": {
+    "@babel/preset-env": "^7.24.5",
+    "@rollup/plugin-babel": "^6.0.4",
+    "rollup": "^4.17.2",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-serve": "^1.1.1"
+  }
+}
