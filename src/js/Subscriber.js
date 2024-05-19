@@ -1,7 +1,7 @@
 const DEFAULT_OPTION = {
-  priority: 0,       // 默认优先级为0
-  once: false,       // 默认不是一次性订阅
-  stopNextEvent: false // 默认不会阻止下一个事件
+  priority: 0, // 默认优先级为0
+  once: false, // 默认不是一次性订阅
+  stopNextEvent: false, // 默认不会阻止下一个事件
 };
 
 class Subscriber {
@@ -16,7 +16,7 @@ class Subscriber {
     }
 
     this.eventName = eventName; // 事件名称
-    this.fn = fn;               // 事件处理函数
+    this.fn = fn; // 事件处理函数
     this.option = { ...Subscriber.defaultOption, ...option }; // 合并默认选项和传入选项
   }
 
@@ -28,8 +28,8 @@ class Subscriber {
     }
 
     return {
-      once: this.option.once,            // 返回是否一次性订阅
-      stopNextEvent: fnResult,           // 返回是否阻止下一个事件
+      once: this.option.once, // 返回是否一次性订阅
+      stopNextEvent: fnResult, // 返回是否阻止下一个事件
     };
   }
 
