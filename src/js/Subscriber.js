@@ -1,49 +1,40 @@
-const mergeOption = function mergeOption(option, beforeOption) {
-  const mergedOption = {};
-  Object.keys(beforeOption).forEach((key) => {
-    if (Object.hasOwnProperty.call(option, key)) {
-      mergedOption[key] = option[key];
-    } else {
-      mergedOption[key] = beforeOption[key];
-    }
-  });
-  return mergedOption;
-};
-
 const DEFAULT_OPTION = {
-  priority: 0,
-  once: false,
-  stopNextEvent: false,
+  priority: 0,       // 默认优先级为0
+  once: false,       // 默认不是一次性订阅
+  stopNextEvent: false // 默认不会阻止下一个事件
 };
 
 class Subscriber {
-  static index = 1;
-
   static defaultOption = DEFAULT_OPTION;
 
-  constructor(eventName, fn, option) {
-    this.index = Subscriber.index;
-    Subscriber.index += 1;
-    this.eventName = eventName;
-    this.fn = fn;
-    this.option = mergeOption(option, Subscriber.defaultOption);
+  constructor(eventName, fn, option = {}) {
+    if (typeof eventName !== "string") {
+      throw new TypeError("eventName must be a string");
+    }
+    if (typeof fn !== "function") {
+      throw new TypeError("fn must be a function");
+    }
+
+    this.eventName = eventName; // 事件名称
+    this.fn = fn;               // 事件处理函数
+    this.option = { ...Subscriber.defaultOption, ...option }; // 合并默认选项和传入选项
   }
 
   onMessage(args) {
-    let fnResult = this.fn(...args);
+    let fnResult = this.fn(...args); // 调用订阅的回调函数
 
     if (this.option.stopNextEvent) {
-      fnResult = true;
+      fnResult = true; // 如果选项中设置了 stopNextEvent，则覆盖函数返回值为 true
     }
 
     return {
-      once: this.option.once,
-      stopNextEvent: fnResult,
+      once: this.option.once,            // 返回是否一次性订阅
+      stopNextEvent: fnResult,           // 返回是否阻止下一个事件
     };
   }
 
   get priority() {
-    return this.option.priority;
+    return this.option.priority; // 获取订阅者的优先级
   }
 }
 

@@ -94,8 +94,6 @@ var DEFAULT_OPTION = {
 var Subscriber = /*#__PURE__*/function () {
   function Subscriber(eventName, fn, option) {
     _classCallCheck(this, Subscriber);
-    this.index = Subscriber.index;
-    Subscriber.index += 1;
     this.eventName = eventName;
     this.fn = fn;
     this.option = mergeOption(option, Subscriber.defaultOption);
@@ -119,7 +117,6 @@ var Subscriber = /*#__PURE__*/function () {
     }
   }]);
 }();
-_defineProperty(Subscriber, "index", 1);
 _defineProperty(Subscriber, "defaultOption", DEFAULT_OPTION);
 
 var EventControl = /*#__PURE__*/function () {
